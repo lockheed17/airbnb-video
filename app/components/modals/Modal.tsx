@@ -51,6 +51,8 @@ const Modal: React.FC<ModalProps> = ({
         if (disabled) {
             return;
         }
+
+        onSubmit();
     }, [disabled, onSubmit]);
 
     const handleSecondaryAction = useCallback(() => {
@@ -181,8 +183,8 @@ const Modal: React.FC<ModalProps> = ({
                                         label={actionLabel}
                                         onClick={handleSubmit}
                                     />
-
                                 </div>
+                                {footer}
                             </div>
 
                         </div>
