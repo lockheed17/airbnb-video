@@ -4,6 +4,7 @@ import EmptyState from "@/app/components/EmptyState";
 import getListings from "@/app/actions/getListings";
 import ListingCard from "@/app/components/listings/ListingCard";
 import getCurrentUser from "@/app/actions/getCurrentUser";
+import {SafeListing} from "@/app/types";
 
 export default async function Home() {
     const listings = await getListings();
@@ -31,7 +32,7 @@ export default async function Home() {
                   2xl:grid-cols-6
                   gap-8
                 ">
-                    {listings.map((listing: any) => {
+                    {listings.map((listing: SafeListing) => {
                         return (
                             <ListingCard
                                 key={listing.id}
