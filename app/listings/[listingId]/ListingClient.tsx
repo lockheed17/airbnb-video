@@ -67,9 +67,9 @@ const ListingClient = ({listing, currentUser, reservations = []}: ListingClientP
             .then(() => {
                 toast.success("Listing reserved!")
                 setDateRange(initialDateRange)
-                // Redirect to /trips
-                // router.push('/trips')
-                router.refresh();
+                // router.refresh();
+                router.push('/trips');
+
             })
             .catch(() => {
                 toast.error("Something went wrong.")
