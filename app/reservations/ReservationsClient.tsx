@@ -1,22 +1,22 @@
 'use client';
 
 import {SafeReservation, SafeUser} from "@/app/types";
+import { useRouter } from "next/navigation"
 import Container from "@/app/components/Container";
 import Heading from "@/app/components/Heading";
-import {useRouter} from "next/navigation";
 import {useCallback, useState} from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import ListingCard from "@/app/components/listings/ListingCard";
 
-interface TripsClientProps {
+interface ReservationsClientProps {
     reservations: SafeReservation[],
     currentUser?: SafeUser | null,
 }
 
-const TripsClient = ({reservations, currentUser}: TripsClientProps) => {
-    const router = useRouter();
-    const [deletingId, setDeletingId] = useState("");
+const ReservationsClient = ({reservations, currentUser}: ReservationsClientProps) => {
+    const router = useRouter()
+    const [deletingId, setDeletingId] = useState('')
 
     const onCancel = useCallback((id: string) => {
         setDeletingId(id);
@@ -37,8 +37,8 @@ const TripsClient = ({reservations, currentUser}: TripsClientProps) => {
     return (
         <Container>
             <Heading
-                title="Trips"
-                subtitle="Where you've been and where you're going"
+                title="Reservations"
+                subtitle="Bookings on your properties"
             />
             <div className="
                 mt-10
@@ -58,7 +58,7 @@ const TripsClient = ({reservations, currentUser}: TripsClientProps) => {
                         actionId={reservation.id}
                         onAction={onCancel}
                         disabled={deletingId === reservation.id}
-                        actionLabel="Cancel reservation"
+                        actionLabel="Cancel guest reservation"
                         currentUser={currentUser}
                     />
                 ))}
@@ -67,4 +67,4 @@ const TripsClient = ({reservations, currentUser}: TripsClientProps) => {
     );
 }
 
-export default TripsClient;
+export default ReservationsClient;
