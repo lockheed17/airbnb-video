@@ -17,6 +17,7 @@
     "bcrypt": "^5.1.0",
     "date-fns": "^3.6.0",
     "leaflet": "^1.9.4",
+    "mkcert": "^3.2.0",
     "next": "^13.2.4",
     "next-auth": "^4.24.7",
     "next-cloudinary": "^6.5.0",
