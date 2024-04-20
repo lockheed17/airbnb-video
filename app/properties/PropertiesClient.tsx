@@ -36,8 +36,8 @@ const PropertiesClient = ({currentUser, listings}: Props) => {
     return (
         <Container>
             <Heading
-                title="Propetries"
-                subtitle="List of your propetries"
+                title="Properties"
+                subtitle="List of your properties"
             />
             <div className="
                 mt-10
@@ -56,7 +56,7 @@ const PropertiesClient = ({currentUser, listings}: Props) => {
                         actionId={listing.id}
                         onAction={onCancel}
                         disabled={deletingId === listing.id}
-                        actionLabel="Delete propetry"
+                        actionLabel="Delete property"
                         currentUser={currentUser}
                     />
                 ))}

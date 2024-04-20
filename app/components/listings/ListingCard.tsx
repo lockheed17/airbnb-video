@@ -58,7 +58,7 @@ const ListingCard = ({data, reservation, onAction, disabled, actionLabel, action
                 col-span-1 cursor-pointer group
             "
         >
-            <div className="flex flex-col gap-2 w-full">
+            <div className="flex flex-col gap-2 w-full h-full">
                 <div
                     className="
                         aspect-square
@@ -90,7 +90,7 @@ const ListingCard = ({data, reservation, onAction, disabled, actionLabel, action
                 <div className="font-semibold text-lg">
                     {location?.region}, {location?.label}
                 </div>
-                <div className="font-light text-neutral-500">
+                <div className="font-light text-neutral-500 flex-grow">
                     {reservationDate || data.category}
                 </div>
                 <div className="flex flex-row items-center gap-1">
