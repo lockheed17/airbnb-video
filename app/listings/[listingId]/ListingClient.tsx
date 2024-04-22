@@ -65,14 +65,14 @@ const ListingClient = ({listing, currentUser, reservations = []}: ListingClientP
             listingId: listing?.id
         })
             .then(() => {
-                toast.success("Listing reserved!")
+                toast.success("Житло зарезервовано!")
                 setDateRange(initialDateRange)
                 router.refresh();
                 router.push('/trips');
 
             })
             .catch(() => {
-                toast.error("Something went wrong.")
+                toast.error("Щось пішло не так.")
             })
             .finally(() => {
                 setIsLoading(false)
@@ -80,13 +80,13 @@ const ListingClient = ({listing, currentUser, reservations = []}: ListingClientP
     }, [totalPrice, dateRange, listing?.id, router, currentUser, loginModal]);
 
     useEffect(() => {
-        if(dateRange.startDate && dateRange.endDate){
+        if (dateRange.startDate && dateRange.endDate){
             const dayCount = differenceInCalendarDays(
                 dateRange.endDate,
                 dateRange.startDate
             )
 
-            if(dayCount && listing.price) {
+            if (dayCount && listing.price) {
                 setTotalPrice(dayCount * listing.price)
             } else {
                 setTotalPrice(listing.price)

@@ -6,6 +6,8 @@ import {useSearchParams} from "next/navigation";
 import useCountries from "@/app/hooks/useCountries";
 import {useMemo} from "react";
 import {differenceInDays} from "date-fns";
+import {getDayEnding} from "@/app/utils/getDayEnding";
+import {getGuestEnding} from "@/app/utils/getGuestEnding";
 
 const Search = () => {
     const searchModal = useSearchModal();
@@ -22,7 +24,7 @@ const Search = () => {
             return getByValue(locationValue as string)?.label
         }
 
-        return "Anywhere"
+        return "Будь-куди"
     }, [getByValue, locationValue]);
 
     const durationLabel = useMemo(() => {
@@ -34,18 +36,22 @@ const Search = () => {
             if (diff === 0) {
                 diff = 1;
             }
-            return `${diff} Days`
+
+            const dayEnding = getDayEnding(diff);
+
+            return `${diff} ${dayEnding}`
         }
 
-        return "Any Week"
+        return "Будь-який тиждень"
     }, [startDate, endDate]);
 
     const guestLabel = useMemo(() => {
         if (guestCount) {
-            return `${guestCount} Guests`
+            const guestEnding = getGuestEnding(+guestCount);
+            return `${guestCount} ${guestEnding}`
         }
 
-        return "Add Guests"
+        return "Додайте гостей"
     }, [guestCount]);
 
     return (
@@ -110,7 +116,7 @@ const Search = () => {
                     <div
                         className="
                             p-2
-                            bg-rose-500
+                            bg-blue-400
                             rounded-full
                             text-white
                         "

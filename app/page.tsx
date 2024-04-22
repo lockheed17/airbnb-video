@@ -7,7 +7,7 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 import {SafeListing} from "@/app/types";
 
 type Props = {
-    searchParams: IListingsParams
+    searchParams: IListingsParams,
 }
 
 export default async function Home({searchParams}: Props) {

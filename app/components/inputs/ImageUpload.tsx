@@ -49,7 +49,7 @@ const ImageUpload = ({onChange, value}: ImageUploadProps) => {
                     >
                         <TbPhotoPlus size={50} />
                         <div className="font-semibold text-lg">
-                            Click to upload
+                            Натисніть для завантаження
                         </div>
                         {value && (
                             <div

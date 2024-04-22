@@ -4,16 +4,15 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 import getListings from "@/app/actions/getListings";
 import PropertiesClient from "@/app/properties/PropertiesClient";
 
-
-const PropertiesPage = async() => {
+const PropertiesPage = async () => {
     const currentUser = await getCurrentUser()
 
     if (!currentUser) {
         return (
             <ClientOnly>
                 <EmptyState
-                    title="Unauthorizes"
-                    subtitle="Please login"
+                    title="Ви не авторизовані"
+                    subtitle="Будь ласка, увійдіть або зареєструйтеся."
                 />
             </ClientOnly>
         )
@@ -27,8 +26,8 @@ const PropertiesPage = async() => {
         return (
             <ClientOnly>
                 <EmptyState
-                    title="No properties found"
-                    subtitle="Looks like you have no properties"
+                    title="Не знайдено жодного об'єкта нерухомості"
+                    subtitle="Схоже, ви не додали жодного об'єкту нерухомості"
                 />
             </ClientOnly>
         )

@@ -5,6 +5,7 @@ import {IconType} from "react-icons";
 interface CategoryInputProps {
     icon: IconType;
     label: string;
+    labelUk?: string;
     selected?: boolean;
     onClick: (value: string) => void;
 }
@@ -12,6 +13,7 @@ interface CategoryInputProps {
 const CategoryInput: React.FC<CategoryInputProps> = ({
     icon: Icon,
     label,
+    labelUk,
     selected,
     onClick
 }) => {
@@ -33,7 +35,7 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
         >
             <Icon size={30} />
             <div className="font-semibold">
-                {label}
+                {labelUk || label}
             </div>
         </div>
     );

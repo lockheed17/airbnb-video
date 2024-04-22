@@ -5,9 +5,11 @@ import {useRouter} from "next/navigation";
 import useCountries from "@/app/hooks/useCountries";
 import {useCallback, useMemo} from "react";
 import {format} from "date-fns";
+import { uk } from "date-fns/locale";
 import Button from "@/app/components/Button";
 import Image from "next/image"
 import HeartButton from "@/app/components/HeartButton";
+import {categories} from "@/app/components/navbar/Categories";
 
 interface ListingCardProps {
     data: SafeListing,
@@ -48,8 +50,19 @@ const ListingCard = ({data, reservation, onAction, disabled, actionLabel, action
         const start = new Date(reservation.startDate)
         const end = new Date(reservation.endDate)
 
-        return `${format(start, 'PP')} - ${format(end, 'PP')}`
+        return `${format(start, 'PP', { locale: uk })} - ${format(end, 'PP', { locale: uk })}`
     }, [reservation]);
+
+    const categoryLabel = useMemo(() => {
+        const currentCategory = categories.find((category) => category.label === data.category);
+
+        if (currentCategory) {
+            return currentCategory.labelUk;
+        } else {
+            return data.category;
+        }
+
+    }, [data.category]);
 
     return (
         <div
@@ -91,7 +104,7 @@ const ListingCard = ({data, reservation, onAction, disabled, actionLabel, action
                     {location?.region}, {location?.label}
                 </div>
                 <div className="font-light text-neutral-500 flex-grow">
-                    {reservationDate || data.category}
+                    {reservationDate || categoryLabel}
                 </div>
                 <div className="flex flex-row items-center gap-1">
                     <div className="font-semibold">
@@ -99,7 +112,7 @@ const ListingCard = ({data, reservation, onAction, disabled, actionLabel, action
                     </div>
                     {!reservation && (
                         <div className="font-light">
-                            night
+                            ніч
                         </div>
                     )}
                 </div>

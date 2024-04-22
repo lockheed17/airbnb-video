@@ -92,14 +92,14 @@ const RentModal = () => {
 
         axios.post('/api/listings', data)
             .then(() => {
-                toast.success("Listing Created!")
+                toast.success("Оголошення створено!")
                 router.refresh()
                 reset()
                 setStep(STEPS.CATEGORY)
                 rentModal.onClose()
             })
             .catch(() => {
-                toast.error("Something went wrong.")
+                toast.error("Щось пішло не так.")
             })
             .finally(() => {
                 setIsLoading(false)
@@ -108,10 +108,10 @@ const RentModal = () => {
 
     const actionLabel = useMemo(() => {
         if (step === STEPS.PRICE) {
-            return 'Create';
+            return 'Створити';
         }
 
-        return 'Next'
+        return 'Далі'
     }, [step]);
 
     const secondaryActionLabel = useMemo(() => {
@@ -119,14 +119,14 @@ const RentModal = () => {
             return undefined;
         }
 
-        return 'Back';
+        return 'Назад';
     }, [step]);
 
     let bodyContent = (
         <div className="flex flex-col gap-8">
             <Heading
-                title="Which of these best describes your place?"
-                subtitle="Pick a category"
+                title="Що з цього найкраще описує ваше місце?"
+                subtitle="Оберіть категорію"
             />
             <div
                 className="
@@ -145,6 +145,7 @@ const RentModal = () => {
                                 setCustomValue('category', category)}
                             selected={category === item.label}
                             label={item.label}
+                            labelUk={item.labelUk}
                             icon={item.icon}
                         />
                     </div>
@@ -157,8 +158,8 @@ const RentModal = () => {
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading
-                    title="Where is your place located?"
-                    subtitle="Help guests find you!"
+                    title="Де знаходиться ваше місце?"
+                    subtitle="Допоможіть вашим гостям знайти вас!"
                 />
                 <CountrySelect
                     value={location}
@@ -175,26 +176,26 @@ const RentModal = () => {
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading
-                    title="Share some basics about your place"
-                    subtitle="What amenities do you have?"
+                    title="Поділіться деякими відомостями про ваше місце"
+                    subtitle="Які зручності у вас є?"
                 />
                 <Counter
-                    title="Guests"
-                    subtitle="How many guests do you allow?"
+                    title="Гості"
+                    subtitle="Скільки гостей ви можете прийняти?"
                     value={guestCount}
                     onChange={(value) => setCustomValue('guestCount', value)}
                 />
                 <hr/>
                 <Counter
-                    title="Rooms"
-                    subtitle="How many rooms do you have?"
+                    title="Кімнати"
+                    subtitle="Скільки кімнат ви маєте?"
                     value={roomCount}
                     onChange={(value) => setCustomValue('roomCount', value)}
                 />
                 <hr/>
                 <Counter
-                    title="Bathrooms"
-                    subtitle="How many bathrooms do you allow?"
+                    title="Ванні кімнати"
+                    subtitle="Скільки ванних кімнат ви маєте?"
                     value={bathroomCount}
                     onChange={(value) => setCustomValue('bathroomCount', value)}
                 />
@@ -206,8 +207,8 @@ const RentModal = () => {
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading
-                    title="Add a photo of your place"
-                    subtitle="Show guests what your place looks like!"
+                    title="Додайте фото вашого місця"
+                    subtitle="Покажіть гостям, як виглядає ваше місце!"
                 />
                 <ImageUpload
                     value={imageSrc}
@@ -221,12 +222,12 @@ const RentModal = () => {
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading
-                    title="How would you describe your place?"
-                    subtitle="Short and sweet works best!"
+                    title="Як би ви описали своє місце?"
+                    subtitle="Коротко і зрозуміло працює найкраще!"
                 />
                 <Input
                     id="title"
-                    label="Title"
+                    label="Назва"
                     disabled={isLoading}
                     register={register}
                     errors={errors}
@@ -235,7 +236,7 @@ const RentModal = () => {
                 <hr/>
                 <Input
                     id="description"
-                    label="Description"
+                    label="Опис"
                     disabled={isLoading}
                     register={register}
                     errors={errors}
@@ -249,12 +250,12 @@ const RentModal = () => {
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading
-                    title="Now set your price"
-                    subtitle="How much do you charge per night?"
+                    title="Встановіть свою ціну"
+                    subtitle="Скільки ви берете за ніч?"
                 />
                 <Input
                     id="price"
-                    label="Price"
+                    label="Ціна"
                     formatPrice
                     type="number"
                     disabled={isLoading}
@@ -274,7 +275,7 @@ const RentModal = () => {
             actionLabel={actionLabel}
             secondaryActionLabel={secondaryActionLabel}
             secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
-            title="Airbnb your home!"
+            title="Здайте ваше житло!"
             body={bodyContent}
         />
     );

@@ -37,7 +37,7 @@ const ListingReservation = ({
                     $ {price}
                 </div>
                 <div className="font-light text-neutral-600">
-                    night
+                    ніч
                 </div>
             </div>
             <hr/>
@@ -50,7 +50,7 @@ const ListingReservation = ({
             <div className="p-4">
                 <Button
                     disabled={disabled}
-                    label="Reserve"
+                    label="Забронювати"
                     onClick={onSubmit}
                 />
             </div>
@@ -62,7 +62,7 @@ const ListingReservation = ({
                 font-semibold
                 text-lg
             ">
-                <div>Total</div>
+                <div>Усього</div>
                 <div>$ {totalPrice}</div>
             </div>
         </div>

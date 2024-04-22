@@ -37,8 +37,8 @@ const TripsClient = ({reservations, currentUser}: TripsClientProps) => {
     return (
         <Container>
             <Heading
-                title="Trips"
-                subtitle="Where you've been and where you're going"
+                title="Подорожі"
+                subtitle="Де ви були та куди збираєтеся"
             />
             <div className="
                 mt-10
@@ -58,7 +58,7 @@ const TripsClient = ({reservations, currentUser}: TripsClientProps) => {
                         actionId={reservation.id}
                         onAction={onCancel}
                         disabled={deletingId === reservation.id}
-                        actionLabel="Cancel reservation"
+                        actionLabel="Скасувати бронювання"
                         currentUser={currentUser}
                     />
                 ))}

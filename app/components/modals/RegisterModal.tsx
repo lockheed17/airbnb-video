@@ -44,12 +44,12 @@ const RegisterModal = () => {
 
         axios.post('/api/register', data)
             .then(() => {
-                toast.success("Success!")
+                toast.success("Ви успішно зареєструвалися!")
                 registerModal.onClose();
                 loginModal.onOpen();
             })
             .catch((error) => {
-                toast.error(`Something went wrong.`);
+                toast.error(`Щось пішло не так`);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -64,8 +64,8 @@ const RegisterModal = () => {
     const bodyContent =  (
         <div className="flex flex-col gap-4">
             <Heading
-                title="Welcome to AirBnb"
-                subtitle="Create an account!"
+                title="Ласкаво просимо до Place2live"
+                subtitle="Створіть акаунт!"
             />
             <Input
                 id="email"
@@ -77,7 +77,7 @@ const RegisterModal = () => {
             />
             <Input
                 id="name"
-                label="Name"
+                label="Ім'я"
                 disabled={isLoading}
                 register={register}
                 errors={errors}
@@ -86,7 +86,7 @@ const RegisterModal = () => {
             <Input
                 id="password"
                 type="password"
-                label="Password"
+                label="Пароль"
                 disabled={isLoading}
                 register={register}
                 errors={errors}
@@ -100,13 +100,13 @@ const RegisterModal = () => {
             <hr/>
             <Button
                 outline
-                label="Continue with Google"
+                label="Продовжити через Google"
                 icon={FcGoogle}
                 onClick={() => signIn('google')}
             />
             <Button
                 outline
-                label="Continue with GitHub"
+                label="Продовжити через GitHub"
                 icon={AiFillGithub}
                 onClick={() => signIn('github')}
             />
@@ -120,7 +120,7 @@ const RegisterModal = () => {
             >
                 <div className="justify-center flex flex-row items-center gap-2">
                     <div>
-                        Already have an account?
+                        Вже маєте акаунт?
                     </div>
                     <div
                         onClick={toggle}
@@ -130,7 +130,7 @@ const RegisterModal = () => {
                             hover:underline
                         "
                     >
-                        Log in
+                        Увійти
                     </div>
                 </div>
             </div>
@@ -141,8 +141,8 @@ const RegisterModal = () => {
         <Modal
             disabled={isLoading}
             isOpen={registerModal.isOpen}
-            title="Register"
-            actionLabel="Continue"
+            title="Реєстрація"
+            actionLabel="Продовжити"
             onClose={registerModal.onClose}
             onSubmit={handleSubmit(onSubmit)}
             body={bodyContent}

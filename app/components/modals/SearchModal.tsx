@@ -99,10 +99,10 @@ const SearchModal = () => {
 
     const actionLabel = useMemo(() => {
         if (step === STEPS.INFO) {
-            return 'Search';
+            return 'Пошук';
         }
 
-        return 'Next'
+        return 'Далі'
     }, [step]);
 
     const secondaryActionLabel = useMemo(() => {
@@ -110,14 +110,14 @@ const SearchModal = () => {
             return undefined;
         }
 
-        return 'Back';
+        return 'Назад';
     }, [step]);
 
     let bodyContent = (
         <div className="flex flex-col gap-8">
             <Heading
-                title="Where do you wanna go?"
-                subtitle="Find the perfect location!"
+                title="Куди ви хочете поїхати?"
+                subtitle="Знайдіть ідеальне місце!"
             />
             <CountrySelect
                 value={location}
@@ -134,8 +134,8 @@ const SearchModal = () => {
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading
-                    title="When do you plan to go?"
-                    subtitle="Make sure everyone is free!"
+                    title="Коли ви плануєте їхати?"
+                    subtitle="Переконайтеся, що всі дні вільні!"
                 />
                 <Calendar
                     value={dateRange}
@@ -149,24 +149,24 @@ const SearchModal = () => {
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading
-                    title="More information"
-                    subtitle="Find your perfect place!"
+                    title="Додаткова інформація"
+                    subtitle="Знайдіть своє ідеальне місце!"
                 />
                 <Counter
-                    title="Guests"
-                    subtitle="How many guest are coming?"
+                    title="Гості"
+                    subtitle="Скільки буде гостей?"
                     value={guestCount}
                     onChange={value => setGuestCount(value)}
                 />
                 <Counter
-                    title="Rooms"
-                    subtitle="How many rooms do you need?"
+                    title="Кімнати"
+                    subtitle="Скільки кімнат вам потрібно?"
                     value={roomCount}
                     onChange={value => setRoomCount(value)}
                 />
                 <Counter
-                    title="Bathrooms"
-                    subtitle="How many bathrooms do you need?"
+                    title="Ванні кімнати"
+                    subtitle="Скільки ванних кімнат вам потрібно?"
                     value={bathroomCount}
                     onChange={value => setBathroomCount(value)}
                 />
@@ -180,7 +180,7 @@ const SearchModal = () => {
                 isOpen={searchModal.isOpen}
                 onClose={searchModal.onClose}
                 onSubmit={onSubmit}
-                title="Filters"
+                title="Фільтри"
                 actionLabel={actionLabel}
                 secondaryActionLabel={secondaryActionLabel}
                 secondaryAction={step === STEPS.LOCATION ? undefined : onBack}

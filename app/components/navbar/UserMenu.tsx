@@ -54,7 +54,7 @@ const UserMenu: React.FC<UserMenuProps> = ({currentUser}) => {
                         cursor-pointer
                     "
                 >
-                    Airbnb your home
+                    Здати ваше житло
                 </div>
                 <div
                     onClick={toggleOpen}
@@ -101,39 +101,39 @@ const UserMenu: React.FC<UserMenuProps> = ({currentUser}) => {
                             <>
                                 <MenuItem
                                     onClick={() => router.push('/trips')}
-                                    label="My trips"
+                                    label="Мої подорожі"
                                 />
                                 <MenuItem
                                     onClick={() => router.push('/favorites')}
-                                    label="My favourites"
+                                    label="Мої вибране"
                                 />
                                 <MenuItem
                                     onClick={() => router.push('/reservations')}
-                                    label="My reservations"
+                                    label="Мої бронювання"
                                 />
                                 <MenuItem
                                     onClick={() => router.push('/properties')}
-                                    label="My properties"
+                                    label="Моя власність"
                                 />
                                 <MenuItem
                                     onClick={rentModal.onOpen}
-                                    label="Airbnb my home"
+                                    label="Здати ваше житло"
                                 />
                                 <hr/>
                                 <MenuItem
                                     onClick={() => signOut()}
-                                    label="Logout"
+                                    label="Вийти"
                                 />
                             </>
                         ) : (
                             <>
                                 <MenuItem
                                     onClick={loginModal.onOpen}
-                                    label="Login"
+                                    label="Увійти"
                                 />
                                 <MenuItem
                                     onClick={registerModal.onOpen}
-                                    label="Sign Up"
+                                    label="Зареєструватися"
                                 />
                             </>
                         )}

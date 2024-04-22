@@ -12,12 +12,11 @@ type Props = {
 
 const FavoritesClient = ({listings, currentUser}: Props) => {
 
-
     return (
         <Container>
             <Heading
-                title="Favorites"
-                subtitle="List of places you have favorited!"
+                title="Вибране"
+                subtitle="Список місць, які ви додали до вибраного"
             />
             <div className="
                 mt-10

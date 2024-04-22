@@ -20,14 +20,14 @@ const font = Nunito({
 })
 
 export default async function RootLayout({
-  children,
+  children
 }: {
   children: React.ReactNode
 }) {
   const currentUser = await getCurrentUser()
 
   return (
-    <html lang="en">
+    <html lang="uk">
       <body className={font.className}>
         <ClientOnly>
           <ToasterProvider />

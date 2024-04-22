@@ -5,17 +5,16 @@ import getFavoriteListings from "@/app/actions/getFavoriteListings";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import FavoritesClient from "@/app/favorites/FavoritesClient";
 
-
-const FavoritesPage = async() => {
+const FavoritesPage = async () => {
     const listings = await getFavoriteListings()
     const currentUser = await getCurrentUser()
 
-    if(listings.length === 0){
+    if (listings.length === 0) {
         return (
             <ClientOnly>
                 <EmptyState
-                    title="No favorites found"
-                    subtitle="Looks like you have no favorite listings."
+                    title="Вибране не знайдено"
+                    subtitle="Схоже, у вас немає вибраних оголошень."
                 />
             </ClientOnly>
         );

@@ -23,7 +23,7 @@ const ReservationsClient = ({reservations, currentUser}: ReservationsClientProps
 
         axios.delete(`/api/reservations/${id}`)
             .then(() => {
-                toast.success("Reservation cancelled")
+                toast.success("Бронювання скасовано")
                 router.refresh();
             })
             .catch((error) => {
@@ -37,8 +37,8 @@ const ReservationsClient = ({reservations, currentUser}: ReservationsClientProps
     return (
         <Container>
             <Heading
-                title="Reservations"
-                subtitle="Bookings on your properties"
+                title="Бронювання"
+                subtitle="Бронювання ваших об'єктів нерухомості"
             />
             <div className="
                 mt-10
@@ -58,7 +58,7 @@ const ReservationsClient = ({reservations, currentUser}: ReservationsClientProps
                         actionId={reservation.id}
                         onAction={onCancel}
                         disabled={deletingId === reservation.id}
-                        actionLabel="Cancel guest reservation"
+                        actionLabel="Скасувати бронювання гостя"
                         currentUser={currentUser}
                     />
                 ))}

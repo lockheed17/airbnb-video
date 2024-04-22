@@ -1,20 +1,29 @@
 'use client';
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import {useRouter} from "next/navigation";
+import {TbHomeDollar} from "react-icons/tb";
+
 
 const Logo = () => {
     const router = useRouter();
 
     return (
-        <Image
+        <div
             onClick={() => router.push('/')}
-            alt="Logo"
-            className="hidden md:block cursor-pointer select-none"
-            height="100"
-            width="100"
-            src="/images/logo.png"
-        />
+            className="
+                hidden
+                lg:flex flex-col justify-center items-center
+                cursor-pointer select-none
+            "
+        >
+            <div>
+                <TbHomeDollar
+                    size={30}
+                />
+            </div>
+            <div className="font-bold">Place2live</div>
+        </div>
     );
 }
 

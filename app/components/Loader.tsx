@@ -12,7 +12,7 @@ const Loader = () => {
         ">
             <PuffLoader
                 size={100}
-                color="red"
+                color="#60a5fa"
             />
         </div>
     );

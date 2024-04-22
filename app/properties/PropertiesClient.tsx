@@ -22,7 +22,7 @@ const PropertiesClient = ({currentUser, listings}: Props) => {
         setDeletingId(id)
         axios.delete(`/api/listings/${id}`)
             .then(() => {
-                toast.success("Listing deleted")
+                toast.success("Оголошення видалено")
                 router.refresh()
             })
             .catch((error) => {
@@ -36,8 +36,8 @@ const PropertiesClient = ({currentUser, listings}: Props) => {
     return (
         <Container>
             <Heading
-                title="Properties"
-                subtitle="List of your properties"
+                title="Власність"
+                subtitle="Перелік ваших об'єктів нерухомості"
             />
             <div className="
                 mt-10
@@ -56,7 +56,7 @@ const PropertiesClient = ({currentUser, listings}: Props) => {
                         actionId={listing.id}
                         onAction={onCancel}
                         disabled={deletingId === listing.id}
-                        actionLabel="Delete property"
+                        actionLabel="Видалити власність"
                         currentUser={currentUser}
                     />
                 ))}

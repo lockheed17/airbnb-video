@@ -21,7 +21,6 @@ import toast from "react-hot-toast";
 import Button from "@/app/components/Button";
 import {useRouter} from "next/navigation";
 
-
 const LoginModal = () => {
     const router = useRouter();
 
@@ -54,7 +53,7 @@ const LoginModal = () => {
                 setIsLoading(false);
 
                 if (callback?.ok) {
-                    toast.success('Logged in');
+                    toast.success('Увійшли в систему');
 
                     router.refresh();
                     loginModal.onClose();
@@ -74,8 +73,8 @@ const LoginModal = () => {
     const bodyContent =  (
         <div className="flex flex-col gap-4">
             <Heading
-                title="Welcome back"
-                subtitle="Login to your account!"
+                title="З поверненням"
+                subtitle="Увійдіть до свого акаунта"
             />
             <Input
                 id="email"
@@ -88,7 +87,7 @@ const LoginModal = () => {
             <Input
                 id="password"
                 type="password"
-                label="Password"
+                label="Пароль"
                 disabled={isLoading}
                 register={register}
                 errors={errors}
@@ -102,13 +101,13 @@ const LoginModal = () => {
             <hr/>
             <Button
                 outline
-                label="Continue with Google"
+                label="Продовжити через Google"
                 icon={FcGoogle}
                 onClick={() => signIn('google')}
             />
             <Button
                 outline
-                label="Continue with GitHub"
+                label="Продовжити через GitHub"
                 icon={AiFillGithub}
                 onClick={() => signIn('github')}
             />
@@ -122,7 +121,7 @@ const LoginModal = () => {
             >
                 <div className="justify-center flex flex-row items-center gap-2">
                     <div>
-                        First time using Airbnb?
+                        Вперше користуєтеся Place2live?
                     </div>
                     <div
                         onClick={toggle}
@@ -132,7 +131,7 @@ const LoginModal = () => {
                             hover:underline
                         "
                     >
-                        Create an account
+                        Створити акаунт
                     </div>
                 </div>
             </div>
@@ -143,8 +142,8 @@ const LoginModal = () => {
         <Modal
             disabled={isLoading}
             isOpen={loginModal.isOpen}
-            title="Login"
-            actionLabel="Continue"
+            title="Вхід"
+            actionLabel="Продовжити"
             onClose={loginModal.onClose}
             onSubmit={handleSubmit(onSubmit)}
             body={bodyContent}

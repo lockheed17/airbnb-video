@@ -6,6 +6,9 @@ import useCountries from "@/app/hooks/useCountries";
 import Avatar from "@/app/components/Avatar";
 import ListingCategory from "@/app/components/listings/ListingCategory";
 import dynamic from "next/dynamic";
+import {getGuestEnding} from "@/app/utils/getGuestEnding";
+import {getRoomEnding} from "@/app/utils/getRoomEnding";
+import {getBathroomEnding} from "@/app/utils/getBathroomEnding";
 
 const Map = dynamic(() => import('../Map'), {
     ssr: false,
@@ -20,7 +23,9 @@ interface ListingInfoProps {
     category: {
         icon: IconType
         label: string
+        labelUk?: string
         description: string
+        descriptionUk: string
     } | undefined,
     locationValue: string
 }
@@ -38,6 +43,10 @@ const ListingInfo = ({
 
     const coordinates = getByValue(locationValue)?.latlng;
 
+    const guestEnding = getGuestEnding(guestCount);
+    const roomEnding = getRoomEnding(roomCount);
+    const bathroomEnding = getBathroomEnding(bathroomCount);
+
     return (
         <div className="col-span-4 flex flex-col gap-8">
             <div className="flex flex-col gap-2">
@@ -48,7 +57,7 @@ const ListingInfo = ({
                     items-center
                     gap-2
                 ">
-                    <div>Hosted by {user?.name}</div>
+                    <div>Розмістив {user?.name}</div>
                     <Avatar src={user?.image}/>
                 </div>
                 <div className="
@@ -59,13 +68,13 @@ const ListingInfo = ({
                     text-neutral-500
                 ">
                     <div>
-                        {guestCount} guests
+                        {guestCount} {guestEnding}
                     </div>
                     <div>
-                        {roomCount} rooms
+                        {roomCount} {roomEnding}
                     </div>
                     <div>
-                        {bathroomCount} bathrooms
+                        {bathroomCount} {bathroomEnding}
                     </div>
                 </div>
             </div>
@@ -74,7 +83,9 @@ const ListingInfo = ({
                 <ListingCategory
                     icon={category.icon}
                     label={category.label}
+                    labelUk={category.labelUk}
                     description={category.description}
+                    descriptionUk={category.descriptionUk}
                 />
             )}
             <hr/>
