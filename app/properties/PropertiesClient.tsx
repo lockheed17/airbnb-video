@@ -22,7 +22,7 @@ const PropertiesClient = ({currentUser, listings}: Props) => {
         setDeletingId(id)
         axios.delete(`/api/listings/${id}`)
             .then(() => {
-                toast.success("Оголошення видалено")
+                toast.success("Оголошення видалено!")
                 router.refresh()
             })
             .catch((error) => {

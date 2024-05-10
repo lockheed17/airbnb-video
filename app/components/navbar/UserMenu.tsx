@@ -54,7 +54,7 @@ const UserMenu: React.FC<UserMenuProps> = ({currentUser}) => {
                         cursor-pointer
                     "
                 >
-                    Здати ваше житло
+                    Здати моє житло
                 </div>
                 <div
                     onClick={toggleOpen}
@@ -117,7 +117,7 @@ const UserMenu: React.FC<UserMenuProps> = ({currentUser}) => {
                                 />
                                 <MenuItem
                                     onClick={rentModal.onOpen}
-                                    label="Здати ваше житло"
+                                    label="Здати моє житло"
                                 />
                                 <hr/>
                                 <MenuItem

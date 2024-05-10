@@ -63,7 +63,8 @@ export const categories = [
         descriptionUk: 'Це помешкання знаходиться на острові!'
     },
     {
-        label: 'Біля озера',
+        label: 'Lake',
+        labelUk: 'Біля озера',
         icon: GiBoatFishing,
         description: 'This property is close to a lake!',
         descriptionUk: 'Цей помешкання знаходиться поруч з озером!'

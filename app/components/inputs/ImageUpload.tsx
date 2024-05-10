@@ -56,7 +56,7 @@ const ImageUpload = ({onChange, value}: ImageUploadProps) => {
                                 className="absolute inset-0 w-full h-full"
                             >
                                 <Image
-                                    alt="Upload"
+                                    alt="Завантажити"
                                     fill
                                     style={{objectFit: 'cover'}}
                                     src={value}

@@ -83,7 +83,7 @@ const ListingCard = ({data, reservation, onAction, disabled, actionLabel, action
                 >
                     <Image
                         fill
-                        alt="Listings"
+                        alt="Оголошення"
                         src={data.imageSrc}
                         className="
                             object-cover

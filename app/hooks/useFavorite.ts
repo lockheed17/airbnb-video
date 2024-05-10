@@ -43,9 +43,9 @@ const useFavorite = ({
 
             await request();
             router.refresh();
-            toast.success('Success');
+            toast.success('Успішно');
         } catch (error) {
-            toast.error("Something went wrong")
+            toast.error("Щось пішло не так")
         }
 
     },[currentUser, hasFavorited, listingId, loginModal, router]);

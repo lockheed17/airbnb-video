@@ -53,7 +53,7 @@ const LoginModal = () => {
                 setIsLoading(false);
 
                 if (callback?.ok) {
-                    toast.success('Увійшли в систему');
+                    toast.success('Ви увійшли в систему');
 
                     router.refresh();
                     loginModal.onClose();

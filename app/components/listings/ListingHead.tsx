@@ -33,7 +33,7 @@ const ListingHead = ({title, locationValue, imageSrc, id, currentUser}: ListingH
                 relative
             ">
                 <Image
-                    alt="Image"
+                    alt="Зображення"
                     src={imageSrc}
                     fill
                     className="object-cover w-full"
