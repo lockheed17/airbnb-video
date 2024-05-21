@@ -8,6 +8,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import ListingCard from "@/app/components/listings/ListingCard";
 import {SafeListing, SafeUser} from "@/app/types";
+import useRentModal from "@/app/hooks/useRentModal";
 
 type Props = {
     listings: SafeListing[],
@@ -17,6 +18,8 @@ type Props = {
 const PropertiesClient = ({currentUser, listings}: Props) => {
     const router = useRouter()
     const [deletingId, setDeletingId] = useState("")
+
+    const rentModal = useRentModal();
 
     const onCancel = useCallback((id: string) => {
         setDeletingId(id)
@@ -34,12 +37,13 @@ const PropertiesClient = ({currentUser, listings}: Props) => {
     }, [router])
 
     return (
-        <Container>
-            <Heading
-                title="Власність"
-                subtitle="Перелік ваших об'єктів нерухомості"
-            />
-            <div className="
+        <>
+            <Container>
+                <Heading
+                    title="Власність"
+                    subtitle="Перелік ваших об'єктів нерухомості"
+                />
+                <div className="
                 mt-10
                 grid grid-cols-1
                 sm:grid-cols-2
@@ -49,19 +53,22 @@ const PropertiesClient = ({currentUser, listings}: Props) => {
                 2xl:grid-cols-6
                 gap-8
             ">
-                {listings.map(listing => (
-                    <ListingCard
-                        key={listing.id}
-                        data={listing}
-                        actionId={listing.id}
-                        onAction={onCancel}
-                        disabled={deletingId === listing.id}
-                        actionLabel="Видалити власність"
-                        currentUser={currentUser}
-                    />
-                ))}
-            </div>
-        </Container>
+                    {listings.map(listing => (
+                        <ListingCard
+                            key={listing.id}
+                            data={listing}
+                            actionId={listing.id}
+                            onAction={onCancel}
+                            disabled={deletingId === listing.id}
+                            actionLabel="Видалити власність"
+                            currentUser={currentUser}
+                            onSecondaryAction={() => rentModal.onOpen(listing)}
+                            secondaryActionLabel="Редагувати власність"
+                        />
+                    ))}
+                </div>
+            </Container>
+        </>
     );
 };
 

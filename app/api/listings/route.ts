@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
-
 import prisma from "@/app/libs/prismadb";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 
 export async function POST(
-    request: Request
+    request: Request,
 ) {
     const currentUser = await getCurrentUser();
 
@@ -25,20 +24,49 @@ export async function POST(
         price
     } = body;
 
-    const listing = await prisma.listing.create({
-        data: {
-            title,
-            description,
-            imageSrc,
-            category,
-            roomCount,
-            bathroomCount,
-            guestCount,
-            locationValue: location.value,
-            price: parseInt(price, 10),
-            userId: currentUser.id
-        }
-    });
+    try {
+        const listingId = body.listingId;
 
-    return NextResponse.json(listing);
+        if (listingId) {
+            const updatedListing = await prisma.listing.update({
+                where: {
+                    id: listingId
+                },
+                data: {
+                    title,
+                    description,
+                    imageSrc,
+                    category,
+                    roomCount,
+                    bathroomCount,
+                    guestCount,
+                    locationValue: location.value,
+                    price: parseInt(price, 10),
+                    userId: currentUser.id
+                }
+            });
+
+            return NextResponse.json(updatedListing);
+        } else {
+            const newListing = await prisma.listing.create({
+                data: {
+                    title,
+                    description,
+                    imageSrc,
+                    category,
+                    roomCount,
+                    bathroomCount,
+                    guestCount,
+                    locationValue: location.value,
+                    price: parseInt(price, 10),
+                    userId: currentUser.id
+                }
+            });
+
+            return NextResponse.json(newListing);
+        }
+    } catch (error: any) {
+        console.error("Error:", error);
+        return NextResponse.error();
+    }
 }

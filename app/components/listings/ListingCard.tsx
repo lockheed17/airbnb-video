@@ -19,9 +19,11 @@ interface ListingCardProps {
     actionLabel?: string,
     actionId?: string,
     currentUser?: SafeUser | null,
+    secondaryActionLabel?: string,
+    onSecondaryAction?: (data: SafeListing) => void,
 }
 
-const ListingCard = ({data, reservation, onAction, disabled, actionLabel, actionId = '', currentUser}: ListingCardProps) => {
+const ListingCard = ({data, reservation, onAction, disabled, actionLabel, actionId = '', currentUser, onSecondaryAction, secondaryActionLabel}: ListingCardProps) => {
     const router = useRouter();
     const {getByValue} = useCountries();
 
@@ -36,6 +38,16 @@ const ListingCard = ({data, reservation, onAction, disabled, actionLabel, action
 
         onAction?.(actionId);
     }, [onAction, actionId, disabled]);
+
+    const handleEdit = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation()
+
+        if (disabled) {
+            return;
+        }
+
+        onSecondaryAction?.(data)
+    }, [onSecondaryAction, data.id, disabled]);
 
     const price = useMemo(() => {
         if (reservation) {
@@ -122,6 +134,14 @@ const ListingCard = ({data, reservation, onAction, disabled, actionLabel, action
                         small
                         label={actionLabel}
                         onClick={handleCancel}
+                    />
+                )}
+                {onSecondaryAction && secondaryActionLabel && (
+                    <Button
+                        disabled={disabled}
+                        small
+                        label={secondaryActionLabel}
+                        onClick={handleEdit}
                     />
                 )}
             </div>

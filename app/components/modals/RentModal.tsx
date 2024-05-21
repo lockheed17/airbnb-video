@@ -1,9 +1,8 @@
 'use client';
 
 import Modal from "@/app/components/modals/Modal";
-
 import useRentModal from "@/app/hooks/useRentModal";
-import {useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import Heading from "@/app/components/Heading";
 import {categories} from "@/app/components/navbar/Categories";
 import CategoryInput from "@/app/components/inputs/CategoryInput";
@@ -30,6 +29,8 @@ const RentModal = () => {
     const router = useRouter();
     const rentModal = useRentModal();
 
+    const editingListing = rentModal.editingListing;
+
     const [step, setStep] = useState(STEPS.CATEGORY);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -42,19 +43,35 @@ const RentModal = () => {
             errors,
         },
         reset
-    } = useForm<FieldValues>({
-        defaultValues: {
-            category: '',
-            location: '',
-            guestCount: 1,
-            roomCount: 1,
-            bathroomCount: 1,
-            imageSrc: '',
-            price: 1,
-            title: '',
-            description: '',
+    } = useForm();
+
+    // useEffect(() => {
+    //     setValue('category', editingListing?.category || '');
+    //     setValue('location', editingListing?.locationValue || '');
+    //     setValue('guestCount', editingListing?.guestCount || 1);
+    //     setValue('roomCount', editingListing?.roomCount || 1);
+    //     setValue('bathroomCount', editingListing?.bathroomCount || 1);
+    //     setValue('imageSrc', editingListing?.imageSrc || '');
+    //     setValue('price', editingListing?.price || 1);
+    //     setValue('title', editingListing?.title || '');
+    //     setValue('description', editingListing?.description || '');
+    // }, [editingListing, setValue]);
+
+    useEffect(() => {
+        if (rentModal.isOpen) {
+            reset({
+                category: editingListing?.category || '',
+                location: editingListing?.locationValue || '',
+                guestCount: editingListing?.guestCount || 1,
+                roomCount: editingListing?.roomCount || 1,
+                bathroomCount: editingListing?.bathroomCount || 1,
+                imageSrc: editingListing?.imageSrc || '',
+                price: editingListing?.price || 1,
+                title: editingListing?.title || '',
+                description: editingListing?.description || ''
+            });
         }
-    });
+    }, [rentModal.isOpen, editingListing, reset, setValue]);
 
     const category = watch('category');
     const location = watch('location');
@@ -89,6 +106,8 @@ const RentModal = () => {
         }
 
         setIsLoading(true)
+
+        data.listingId = editingListing?.id;
 
         axios.post('/api/listings', data)
             .then(() => {
@@ -267,10 +286,16 @@ const RentModal = () => {
         )
     }
 
+    const handleClose = () => {
+        reset()
+        setStep(STEPS.CATEGORY)
+        rentModal.onClose()
+    }
+
     return (
         <Modal
             isOpen={rentModal.isOpen}
-            onClose={rentModal.onClose}
+            onClose={handleClose}
             onSubmit={handleSubmit(onSubmit)}
             actionLabel={actionLabel}
             secondaryActionLabel={secondaryActionLabel}
